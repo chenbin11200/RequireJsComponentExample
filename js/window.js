@@ -1,4 +1,4 @@
-define(['jquery', 'jqueryUI'],function($, $UI){
+define(['widget', 'jquery', 'jqueryUI'],function(widget, $, $UI){
 
     function Window(){
         this.cfg={
@@ -19,22 +19,7 @@ define(['jquery', 'jqueryUI'],function($, $UI){
         this.handlers = {};
     }
 
-    Window.prototype={
-        on: function(type, handler){
-            if(typeof this.handlers[type] == "undefined"){
-                this.handlers[type] = [];
-            }
-            this.handlers[type].push(handler);
-            return this;
-        },
-        fire: function(type, data){
-            if(this.handlers[type] instanceof Array){
-                var handlers = this.handlers[type];
-                for(var i=0,len=handlers.length;i<len;i++){
-                    handlers[i](data);
-                }
-            }
-        },
+    Window.prototype = $.extend({}, new widget.Widget(), {
         alert: function(cfg){
             var CFG = $.extend(this.cfg,cfg);
             var boundingBox = $(
@@ -97,7 +82,7 @@ define(['jquery', 'jqueryUI'],function($, $UI){
         prompt:function(){
 
         }
-    }
+    });
     
     return {
         Window: Window

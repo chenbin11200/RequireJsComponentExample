@@ -2,6 +2,11 @@ require.config({
     paths: {
         jquery:'jquery-2.1.1',
         jqueryUI: 'http://code.jquery.com/ui/1.10.4/jquery-ui'
+    },
+    shim: {
+        jqueryUI: {
+            deps: ['jquery']
+        }
     }
 });
 
