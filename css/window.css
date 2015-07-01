@@ -10,4 +10,16 @@
     bottom:10px;
     left:50%;
     margin-left:-50px;
-}    
+}
+
+.window_header{
+	background: #333;
+	color: #fff;
+	text-align: center;
+	padding: 5px;
+	font-size: 20px;
+}
+
+.window_body{
+	padding: 10px;
+}
