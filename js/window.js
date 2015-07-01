@@ -1,4 +1,4 @@
-define(['jquery'],function($){
+define(['jquery', 'jqueryUI'],function($, $UI){
 
     function Window(){
         this.cfg={
@@ -9,6 +9,8 @@ define(['jquery'],function($){
             handler: null,
             hasCloseBtn: false,
             hasMask: true,
+            isDraggable: true,
+            dragHandle: null,
             skinClassName: null,
             text4AlertBtn: "Confirm",
             handler4AlertBtn: null,
@@ -55,6 +57,14 @@ define(['jquery'],function($){
             }
             if(CFG.skinClassName){
                 boundingBox.addClass(CFG.skinClassName);
+            }
+            if(CFG.isDraggable){
+                if(CFG.dragHandle){
+                    boundingBox.draggable({handle: CFG.dragHandle});
+                }
+                else{
+                    boundingBox.draggable();    
+                }
             }
         },
         confirm:function(){
