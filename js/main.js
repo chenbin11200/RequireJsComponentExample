@@ -14,7 +14,14 @@ require(['jquery','window'],function($,w){
             },
             width:300,
             height:150,
-            y:50
+            y:50,
+            hasCloseBtn: true,
+            handler4AlertBtn: function(){
+                alert("you click the alert button");
+            },
+            handler4CloseBtn: function(){
+                alert("you click the close button");
+            }
         });
     })
 });

@@ -5,11 +5,11 @@
 }
 
 .window_boundingBox input{
-    width:100px;
+    width: 100px;
     position:absolute;
     bottom:10px;
     left:50%;
-    margin-left:-50px;
+    margin-left: -50px;
 }
 
 .window_header{
@@ -22,4 +22,15 @@
 
 .window_body{
 	padding: 10px;
+}
+
+.window_closeBtn{
+    position: absolute;
+    right: 0;
+    top:0;
+    padding:5px 10px;
+    font-size: 20px;
+    background: blue;
+    color: #fff;
+    cursor: pointer;
 }

@@ -6,7 +6,10 @@ define(['jquery'],function($){
             height: 300,
             title: "title",
             content: "system message",
-            handler: null
+            handler: null,
+            hasCloseBtn: false,
+            handler4AlertBtn: null,
+            handler4CloseBtn: null
         };
     }
 
@@ -22,7 +25,7 @@ define(['jquery'],function($){
                 btn = boundingBox.find(".window_footer input");
             boundingBox.appendTo("body");
     	    btn.click(function(){
-         		CFG.handler && CFG.handler();
+                CFG.handler4AlertBtn&&CFG.handler4AlertBtn();
         		boundingBox.remove();
     	    });
             boundingBox.css({
@@ -31,9 +34,16 @@ define(['jquery'],function($){
                 left : (CFG.x || (window.innerWidth - CFG.width)/2) + "px",
                 top : (CFG.y || (window.innerHeight - CFG.height)/2) + "px"
             });
+            if(CFG.hasCloseBtn){
+                var closeBtn = $('<span class="window_closeBtn">X</span>');
+                closeBtn.appendTo(boundingBox);
+                closeBtn.click(function(){
+                    CFG.handler4CloseBtn&&CFG.handler4CloseBtn();
+                    boundingBox.remove();
+                });
+            }
         },
         confirm:function(){
-
         },
         prompt:function(){
 
