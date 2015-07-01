@@ -4,10 +4,10 @@ require.config({
     }
 });
 
-require(['tabview','treeview'],function(tab, tree){
-    var tabView = new tab.TabView(),
-    	treeView = new tree.TreeView();
-    alert(tabView.name);
-    alert(treeView.name);
-    alert(tabView.animate.name);
+require(['jquery','window'],function($,w){
+    $("#a").click(function(){
+        new w.Window().alert("welcome!",function(){
+          alert("you click the button");  
+        });
+    })
 });
