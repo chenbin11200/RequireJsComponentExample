@@ -7,8 +7,7 @@ require.config({
 
 require(['jquery','window'],function($,w){
     $("#a").click(function(){
-        var win = new w.Window();
-        win.alert({
+        var win = new w.Window().alert({
             title: "提示",
             content: "welcome!",
             handler: function(){
@@ -26,16 +25,12 @@ require(['jquery','window'],function($,w){
             handler4CloseBtn: function(){
                 alert("you click the close button");
             }
-        });
-
-        win.on("alert", function(){
+        }).on("alert", function(){
             alert("the 2nd alert handler");
-        });
-        win.on("alert", function(){
-            alert("the 3rd alert handler");
-        });
-        win.on("close", function(){
+        }).on("close", function(){
             alert("the 2nd close handler");
         });
+
+        win.on("alert", function(){alert("the 3rd alert handler");});
     })
 });

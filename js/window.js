@@ -25,6 +25,7 @@ define(['jquery', 'jqueryUI'],function($, $UI){
                 this.handlers[type] = [];
             }
             this.handlers[type].push(handler);
+            return this;
         },
         fire: function(type, data){
             if(this.handlers[type] instanceof Array){
@@ -88,6 +89,7 @@ define(['jquery', 'jqueryUI'],function($, $UI){
             if(CFG.handler4CloseBtn){
                 this.on("close", CFG.handler4CloseBtn);
             }
+            return this;
         },
         confirm:function(){
 
