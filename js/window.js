@@ -9,6 +9,7 @@ define(['jquery'],function($){
             handler: null,
             hasCloseBtn: false,
             skinClassName: null,
+            text4AlertBtn: "Confirm",
             handler4AlertBtn: null,
             handler4CloseBtn: null
         };
@@ -21,7 +22,7 @@ define(['jquery'],function($){
                 '<div class="window_boundingBox">'+
                     '<div class="window_header">'+CFG.title+'</div>'+
                     '<div class="window_body">'+CFG.content+'</div>'+
-                    '<div class="window_footer"><input type="button" value="confirm"></div>'+
+                    '<div class="window_footer"><input type="button" value="'+ CFG.text4AlertBtn +'"></div>'+
                 '</div>'),
                 btn = boundingBox.find(".window_footer input");
             boundingBox.appendTo("body");
