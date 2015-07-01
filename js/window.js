@@ -8,6 +8,7 @@ define(['jquery'],function($){
             content: "system message",
             handler: null,
             hasCloseBtn: false,
+            skinClassName: null,
             handler4AlertBtn: null,
             handler4CloseBtn: null
         };
@@ -42,8 +43,12 @@ define(['jquery'],function($){
                     boundingBox.remove();
                 });
             }
+            if(CFG.skinClassName){
+                boundingBox.addClass(CFG.skinClassName);
+            }
         },
         confirm:function(){
+
         },
         prompt:function(){
 
