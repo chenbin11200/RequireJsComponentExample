@@ -13,18 +13,37 @@ define(['widget', 'jquery', 'jqueryUI'],function(widget, $, $UI){
             dragHandle: null,
             skinClassName: null,
             text4AlertBtn: "Confirm",
+            text4ConfirmBtn: "Confirm",
+            text4CancelBtn: "Cancel",
             handler4AlertBtn: null,
-            handler4CloseBtn: null
+            handler4CloseBtn: null,
+            handler4ConfirmBtn: null,
+            handler4CancelBtn: null
         };
     }
 
     Window.prototype = $.extend({}, new widget.Widget(), {
         renderUI: function () {
+            var footerContent = "";
+            switch (this.cfg.winType){
+                case "alert":
+                    footerContent = '<input type="button" value="' 
+                        + this.cfg.text4AlertBtn
+                        + '" class="window_alertBtn">';
+                    break;
+                case "confirm":
+                    footerContent = '<input type="button" value="'
+                        + this.cfg.text4ConfirmBtn 
+                        + '" class="window_confirmBtn"><input type="button" value="'
+                        + this.cfg.text4CancelBtn
+                        + '" class="window_cancelBtn">';
+                    break;
+            }
             this.boundingBox = $(
                 '<div class="window_boundingBox">'+
                     '<div class="window_header">'+this.cfg.title+'</div>'+
                     '<div class="window_body">'+this.cfg.content+'</div>'+
-                    '<div class="window_footer"><input type="button" value="'+ this.cfg.text4AlertBtn +'" class="window_alertBtn"></div>'+
+                    '<div class="window_footer">'+ footerContent +'</div>' +
                 '</div>'
             );
             if(this.cfg.hasCloseBtn){
@@ -45,12 +64,24 @@ define(['widget', 'jquery', 'jqueryUI'],function(widget, $, $UI){
             }).delegate(".window_closeBtn", "click", function(){
                 that.fire("close");
                 that.destroy();
+            }).delegate(".window_confirmBtn", "click", function(){
+                that.fire("confirm");
+                that.destroy();
+            }).delegate(".window_cancelBtn", "click", function(){
+                that.fire("cancel");
+                that.destroy();
             });
             if(this.cfg.handler4AlertBtn){
                 this.on("alert", this.cfg.handler4AlertBtn); //or use this.on is acceptable
             }
             if(this.cfg.handler4CloseBtn){
                 this.on("close", this.cfg.handler4CloseBtn); //or use this.on is acceptable
+            }
+            if(this.cfg.handler4ConfirmBtn){
+                this.on("confirm", this.cfg.handler4ConfirmBtn); //or use this.on is acceptable
+            }
+            if(this.cfg.handler4CancelBtn){
+                this.on("cancel", this.cfg.handler4CancelBtn); //or use this.on is acceptable
             }
         },
         syncUI: function () {
@@ -76,12 +107,14 @@ define(['widget', 'jquery', 'jqueryUI'],function(widget, $, $UI){
             this._mask && this._mask.remove();
         },
         alert: function(cfg){
-            $.extend(this.cfg,cfg);
+            $.extend(this.cfg, cfg, {winType: "alert"});
             this.render();
             return this;
         },
-        confirm:function(){
-
+        confirm:function(cfg){
+            $.extend(this.cfg, cfg, {winType: "confirm"});
+            this.render();
+            return this;
         },
         prompt:function(){
 
