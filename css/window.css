@@ -27,6 +27,10 @@
 	padding: 10px;
 }
 
+.window_promptInputWrapper{
+    text-align: center;
+}
+
 .window_footer{
     position: absolute;
     bottom: 0;

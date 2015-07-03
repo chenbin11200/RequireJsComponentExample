@@ -53,4 +53,24 @@ require(['jquery','window'],function($,w){
             alert("Cancel");
         });
     });
+
+    $("#c").click(function () {
+        new w.Window().prompt({
+            title: "Please type in your name",
+            content: "We will save your input name.",
+            width: 300,
+            height: 150,
+            y: 50,
+            text4PromptBtn: "Input",
+            text4CancelBtn: "Cancel",
+            defaultValue4PromptInput: "Bin",
+            dragHandle: ".window_header",
+            handler4PromptBtn: function(inputValue){
+                alert("What you have entered is:" + inputValue);
+            },
+            handler4CancelBtn: function(){
+                alert("Cancel");
+            }
+        });
+    });
 });
