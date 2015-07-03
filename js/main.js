@@ -73,4 +73,14 @@ require(['jquery','window'],function($,w){
             }
         });
     });
+
+    $("#d").click(function () {
+        new w.Window().common({
+            content: "I am a common window.",
+            width: 300,
+            height: 150,
+            y: 50,
+            hasCloseBtn: true
+        });
+    });
 });
